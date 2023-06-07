@@ -1,4 +1,4 @@
-import {sum, mag, magicSort} from '../basic';
+import {sum, orderByProps} from '../basic';
 
 test('should sum', () => {
   const result = sum([1, 2, 3]);
@@ -6,24 +6,34 @@ test('should sum', () => {
   expect(result).toBe(6);
 });
 
-test('mag', () => {
-  const obj = {name: 'Маг', health: 90};
-  const result = mag(obj);
 
-  expect(result).toBe('healthy');
+test('massiv', () => {
+  const testOrder = [{
+    key: "name",
+    value: "мечник"
+  }, 
+  {
+    key: "level",
+    value: 2
+  },
+   {
+    key: "attack",
+    value: 80
+  }, 
+   {
+    key: "defence",
+    value: 40
+  }, 
+  {
+    key: "health",
+    value: 10
+  }];
+  
+  const obj = {name: 'мечник', health: 10, level: 2, attack: 80, defence: 40};
+
+  const result = orderByProps(obj, ["name", "level"]); 
+
+  expect(result).toEqual(testOrder);
 });
 
-test('magicsort', () => {
-  const magic2 = [
-    {name: 'мечник', health: 10},
-    {name: 'маг', health: 80},
-    {name: 'лучник', health: 100},
-  ];
-const magic = [
-  {name: 'мечник', health: 10},
-  {name: 'маг', health: 100},
-  {name: 'лучник', health: 80},
-];
-  const result = magicSort(magic);
-  expect(result).toEqual(magic2);
-})
+
